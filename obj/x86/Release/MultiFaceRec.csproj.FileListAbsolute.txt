@@ -1,0 +1,4 @@
+\\Mac\Home\Documents\Frndz_Face_Detector\obj\x86\Release\MultiFaceRec.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Frndz_Face_Detector\obj\x86\Release\MultiFaceRec.FrmPrincipal.resources
+\\Mac\Home\Documents\Frndz_Face_Detector\obj\x86\Release\MultiFaceRec.Properties.Resources.resources
+\\Mac\Home\Documents\Frndz_Face_Detector\obj\x86\Release\MultiFaceRec.csproj.GenerateResource.Cache

@@ -1,0 +1,13 @@
+{
+"NoOfStores":["2"],
+"MiscFolder":["/Misc/"],
+"StoreFolder":["/Store/"],
+"UploadedFacesFolder":["/UploadedFaces/"],
+"TrainedFacesFolder":["/TrainedFaces/"],
+"ConsiderDataAfterThisDateForStore1":["1/1/2016 12:16:14 PM"],
+"ConsiderDataAfterThisDateForStore2":["1/1/2016 12:16:14 PM"],
+"MakeEntryInStoreFileAfterThisNoOfDay":["1"],
+"MyStoreNameFilePath":["/Store/Store2.json"],
+"VbsFolder":["/Vbs/"],
+"MainSystemIPAddress":["mayank@172.25.1.81"]
+}

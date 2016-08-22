@@ -1,0 +1,1 @@
+CreateObject("sapi.spvoice").Speak "Thank you very much for registering your face"

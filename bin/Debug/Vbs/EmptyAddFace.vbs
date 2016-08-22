@@ -1,0 +1,1 @@
+CreateObject("sapi.spvoice").Speak "Please provide a name and then try adding your face"
