@@ -22,15 +22,12 @@ namespace MultiFaceRec
         Capture grabber;
         HaarCascade face;
         MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
-        Image<Gray, byte> result, resultUploadedFace, TrainedFace = null;
-        Image<Gray, byte> UploadedFace = null;
-        Image<Gray, byte> gray = null;
-        Image<Gray, byte> grayUploadedFace = null;
+        Image<Gray, byte> result, resultUploadedFace, TrainedFace, gray, grayUploadedFace;
+        //Image<Gray, byte> UploadedFace = null;
         List<Image<Gray, byte>> trainingImages = new List<Image<Gray, byte>>();
         List<string> labels = new List<string>();
-        int ContTrain, NumLabels;
+        int ContTrain, NumLabels, NumOfStores;
         string name = string.Empty, names = string.Empty;
-        Dictionary<string, List<string>> Config;
         string TrainedFacesFolder, UploadedFacesFolder, MiscFolder, MyStoreNameFilePath, MakeEntryInStoreFileAfterThisNoOfDay, VbsFolder, StoreFolder;
         string[] Labels;
 
@@ -46,36 +43,52 @@ namespace MultiFaceRec
             try
             {
                 //Get the config from Config.json
-                Config = GetJsonFromFile("/Misc/Config.json");
+                var Config = GetJsonFromFile(Application.StartupPath + "/Misc/Config.json");
 
                 //Set the folder and file paths from Config.json
-                TrainedFacesFolder = Config["TrainedFacesFolder"][0];
-                UploadedFacesFolder = Config["UploadedFacesFolder"][0];
-                MiscFolder = Config["MiscFolder"][0];
-                MyStoreNameFilePath = Config["MyStoreNameFilePath"][0];
-                MakeEntryInStoreFileAfterThisNoOfDay = Config["MakeEntryInStoreFileAfterThisNoOfDay"][0];
-                VbsFolder = Config["VbsFolder"][0];
-                StoreFolder = Config["StoreFolder"][0];
+                SetConfigValuesIntoGlobalVariables(Config);
 
-                //Load of previous trained faces and labels for each image
-                var Labelsinfo = File.ReadAllText(Application.StartupPath + TrainedFacesFolder + "TrainedLabels.txt");
-                Labels = Labelsinfo.Split('%');
+                //Load previous trained faces and labels for each image
+                Labels = File.ReadAllText(TrainedFacesFolder + "TrainedLabels.txt").Split('%');
                 NumLabels = Convert.ToInt16(Labels[0]);
                 ContTrain = NumLabels;
-                string LoadFaces;
 
-                for (int tf = 1; tf < NumLabels + 1; tf++)
+                //Populate loaded images in trainingImages list and update labels also
+                for (var tf = 1; tf < NumLabels + 1; ++tf)
                 {
-                    LoadFaces = "face" + tf + ".bmp";
-                    trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + TrainedFacesFolder + LoadFaces));
+                    trainingImages.Add(new Image<Gray, byte>(TrainedFacesFolder + "face" + tf + ".bmp"));
                     labels.Add(Labels[tf]);
                 }
-
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nothing in the database, please add at least one face.", "Trained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Something went wrong while loading faces from database", "Trained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        /// <summary>
+        /// Takes the value from Config and set the global variables
+        /// </summary>
+        /// <param name="config"></param>
+        private void SetConfigValuesIntoGlobalVariables(IDictionary<string, List<string>> config)
+        {
+            var isStoreWebcam = config["IsStoreWebcam"][0];
+            var mainSystemFolder = config["MainSystemFolder"][0];
+            UploadedFacesFolder = config["UploadedFacesFolder"][0];
+            MiscFolder = config["MiscFolder"][0];
+            MakeEntryInStoreFileAfterThisNoOfDay = config["MakeEntryInStoreFileAfterThisNoOfDay"][0];
+            VbsFolder = config["VbsFolder"][0];
+            TrainedFacesFolder = isStoreWebcam == "False"
+                     ? Application.StartupPath + config["TrainedFacesFolder"][0]
+                     : mainSystemFolder + config["TrainedFacesFolder"][0];
+            StoreFolder = isStoreWebcam == "False"
+                          ? Application.StartupPath + config["StoreFolder"][0]
+                          : mainSystemFolder + config["StoreFolder"][0];
+            MyStoreNameFilePath = isStoreWebcam == "False"
+                                  ? Application.StartupPath + config["MyStoreNameFilePath"][0]
+                                  : mainSystemFolder + config["MyStoreNameFilePath"][0];
+
+            NumOfStores = int.Parse(config["NoOfStores"][0]);
         }
 
         /// <summary>
@@ -175,7 +188,7 @@ namespace MultiFaceRec
         /// <param name="filePath">Path to file</param>
         private void WriteJsonToFile(Dictionary<string, List<string>> storeJsonData, string filePath)
         {
-            File.WriteAllText(Application.StartupPath + filePath, JsonConvert.SerializeObject(storeJsonData));
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(storeJsonData));
         }
 
         /// <summary>
@@ -186,8 +199,7 @@ namespace MultiFaceRec
         private int GetDateInInteger(string dateStringWithoutName)
         {
             var dateString = dateStringWithoutName.Split('/');
-            var result = int.Parse(dateString[2].Split(' ')[0] + (dateString[0].Length == 2 ? dateString[0] : "0" + dateString[0]) + (dateString[1].Length == 2 ? dateString[1] : "0" + dateString[1]));
-            return result;
+            return int.Parse(dateString[2].Split(' ')[0] + (dateString[0].Length == 2 ? dateString[0] : "0" + dateString[0]) + (dateString[1].Length == 2 ? dateString[1] : "0" + dateString[1]));
         }
 
         /// <summary>
@@ -214,7 +226,6 @@ namespace MultiFaceRec
         /// <param name="e"></param>
         private void button2_Click(object sender, System.EventArgs e)
         {
-
             if (textBox1.Text.Equals(string.Empty))
             {
                 Speak("EmptyAddFace.vbs");
@@ -256,14 +267,18 @@ namespace MultiFaceRec
                 imageBox1.Image = result.Resize(162, 142, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
                 //Write the number of trained faces in a file text for further load
-                File.WriteAllText(Application.StartupPath + TrainedFacesFolder + "TrainedLabels.txt", trainingImages.ToArray().Length.ToString() + "%");
+                File.WriteAllText(TrainedFacesFolder + "TrainedLabels.txt", trainingImages.ToArray().Length.ToString() + "%");
 
                 //Write the labels of trained faces in a file text for further load
                 for (var i = 1; i < trainingImages.ToArray().Length + 1; i++)
                 {
-                    trainingImages.ToArray()[i - 1].Save(Application.StartupPath + TrainedFacesFolder + "face" + i + ".bmp");
-                    File.AppendAllText(Application.StartupPath + TrainedFacesFolder + "TrainedLabels.txt", labels.ToArray()[i - 1] + "%");
+                    trainingImages.ToArray()[i - 1].Save(TrainedFacesFolder + "face" + i + ".bmp");
+                    File.AppendAllText(TrainedFacesFolder + "TrainedLabels.txt", labels.ToArray()[i - 1] + "%");
                 }
+
+                // Make a call to copy this newly added face to copy to all store folders
+                //
+                //
 
                 // Speak the message "Thank you for registering your face"
                 Speak("register.vbs");
@@ -279,8 +294,10 @@ namespace MultiFaceRec
         /// RunWindowsCommand
         /// </summary>
         /// <param name="command">RunWindowsCommand("/C copy " + Application.StartupPath + "\\Store\\*.* " + Application.StartupPath + "\\TempStore\\ /Z /Y");</param>
-        public void RunWindowsCommand(string command)
+        public void RunWindowsCommand()
         {
+            var command = "/C copy " + Application.StartupPath + "\\Store\\*.* " + Application.StartupPath +
+                          "\\TempStore\\ /Z /Y";
             var process = new Process();
             var startInfo = new ProcessStartInfo();
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -429,12 +446,11 @@ namespace MultiFaceRec
             var recommendation = string.Empty;
 
             //Get the recommendation from the JSON file
-            var jsonRecommendation = GetJsonFromFile(MiscFolder + "Recommendation.json");
+            var jsonRecommendation = GetJsonFromFile(Application.StartupPath + MiscFolder + "Recommendation.json");
             var jsonRecommendationGeneral = jsonRecommendation["General"];
-            var noOfStores = int.Parse(Config["NoOfStores"][0]);
 
             //Find the stores where the person (name) has visited
-            for (var i = 0; i < noOfStores; ++i)
+            for (var i = 0; i < NumOfStores; ++i)
             {
                 var jsonStore = GetJsonFromFile(StoreFolder + "Store" + (i + 1) + ".json");
                 if (jsonStore.ContainsKey(name))
@@ -459,7 +475,7 @@ namespace MultiFaceRec
         /// <returns></returns>
         private static Dictionary<string, List<string>> GetJsonFromFile(string filepath)
         {
-            var jsonData = File.ReadAllText(Application.StartupPath + filepath);
+            var jsonData = File.ReadAllText(filepath);
             return JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(jsonData);
         }
 

@@ -9,5 +9,6 @@
 "MakeEntryInStoreFileAfterThisNoOfDay":["1"],
 "MyStoreNameFilePath":["/Store/Store2.json"],
 "VbsFolder":["/Vbs/"],
-"MainSystemIPAddress":["mayank@172.25.1.81"]
+"MainSystemFolder":["//M_S-PC/debug"],
+"IsStoreWebcam":["False"]
 }

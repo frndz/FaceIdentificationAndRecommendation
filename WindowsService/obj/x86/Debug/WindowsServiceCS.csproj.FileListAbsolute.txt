@@ -1,0 +1,39 @@
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe.config
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.pdb
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.exe
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.pdb
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.ProjectInstaller.resources
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csproj.GenerateResource.Cache
+C:\Users\Mudassar\Desktop\Dropbox\Samples\Windows\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csprojResolveAssemblyReference.cache
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe.config
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.exe
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.pdb
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.pdb
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csprojResolveAssemblyReference.cache
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.ProjectInstaller.resources
+E:\Study Section\Int_Prep\C-Sharp\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe.config
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.exe
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.pdb
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.exe
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\bin\Debug\WindowsServiceCS.pdb
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.ProjectInstaller.resources
+\\Mac\Home\Documents\WindowsService\WindowsServiceCS\obj\x86\Debug\WindowsServiceCS.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe.config
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.pdb
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\MultiFaceRec.exe
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\Emgu.CV.dll
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\Emgu.CV.UI.dll
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\Newtonsoft.Json.dll
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\Emgu.Util.dll
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\MultiFaceRec.pdb
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\Newtonsoft.Json.xml
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\obj\x86\Debug\WindowsServiceCS.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\obj\x86\Debug\WindowsServiceCS.ProjectInstaller.resources
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\obj\x86\Debug\WindowsServiceCS.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\obj\x86\Debug\WindowsServiceCS.exe
+\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\obj\x86\Debug\WindowsServiceCS.pdb
