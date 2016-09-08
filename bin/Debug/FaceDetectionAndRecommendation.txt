@@ -1,0 +1,4 @@
+FaceDetectionAndRecommendation Service started 06/09/2016 10:17:44 PM
+FaceDetectionAndRecommendation Service Mode: INTERVAL 06/09/2016 10:17:44 PM
+FaceDetectionAndRecommendation Service scheduled to run after: 0 day(s) 0 hour(s) 1 minute(s) 0 seconds(s) 06/09/2016 10:17:44 PM
+FaceDetectionAndRecommendation Service stopped 06/09/2016 10:18:05 PM

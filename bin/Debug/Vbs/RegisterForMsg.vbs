@@ -1,0 +1,1 @@
+CreateObject("sapi.spvoice").Speak "Please register your phone number to get details of the offers"

@@ -755,3 +755,136 @@ Affected parameters are:
    logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
    assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
    logtoconsole = 
+Uninstalling assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+Removing EventLog source FaceDetectionAndRecommendation.
+Service FaceDetectionAndRecommendation is being removed from the system...
+Service FaceDetectionAndRecommendation was successfully removed from the system.
+Attempt to stop service FaceDetectionAndRecommendation.
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Service FaceDetectionAndRecommendation has been successfully installed.
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Committing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Rolling back assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Restoring event log to previous state for source FaceDetectionAndRecommendation.
+Uninstalling assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+Removing EventLog source FaceDetectionAndRecommendation.
+Service FaceDetectionAndRecommendation is being removed from the system...
+Service FaceDetectionAndRecommendation was successfully removed from the system.
+Attempt to stop service FaceDetectionAndRecommendation.
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Service FaceDetectionAndRecommendation has been successfully installed.
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Committing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Uninstalling assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+Removing EventLog source FaceDetectionAndRecommendation.
+Service FaceDetectionAndRecommendation is being removed from the system...
+Service FaceDetectionAndRecommendation was successfully removed from the system.
+Attempt to stop service FaceDetectionAndRecommendation.
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Service FaceDetectionAndRecommendation has been successfully installed.
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Committing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Uninstalling assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+Removing EventLog source FaceDetectionAndRecommendation.
+Service FaceDetectionAndRecommendation is being removed from the system...
+Service FaceDetectionAndRecommendation was successfully removed from the system.
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Service FaceDetectionAndRecommendation has been successfully installed.
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Committing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Uninstalling assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+Removing EventLog source FaceDetectionAndRecommendation.
+Service FaceDetectionAndRecommendation is being removed from the system...
+Service FaceDetectionAndRecommendation was successfully removed from the system.
+Installing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 
+Installing service FaceDetectionAndRecommendation...
+Service FaceDetectionAndRecommendation has been successfully installed.
+Creating EventLog source FaceDetectionAndRecommendation in log Application...
+Committing assembly '\\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe'.
+Affected parameters are:
+   i = 
+   logfile = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.InstallLog
+   assemblypath = \\Mac\Home\Documents\Frndz_Face_Detector\WindowsService\bin\Debug\WindowsServiceCS.exe
+   logtoconsole = 

@@ -9,6 +9,8 @@ using Emgu.CV.CvEnum;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using Twilio;
+using Application = System.Windows.Forms.Application;
 
 namespace MultiFaceRec
 {
@@ -17,6 +19,13 @@ namespace MultiFaceRec
     /// </summary>
     public partial class FrmPrincipal : Form
     {
+        private const string NoMatchFound = "No match found";
+        private const string MatchFound = "Match found";
+        private const string False = "False";
+        private const string ConfigFilePath = "/Misc/Config.json";
+        private const string TrainedLabelsFilePath = "TrainedLabels.txt";
+        private const string HaarcascadeFace = "haarcascade_frontalface_default.xml";
+
         //Declaration of all variables, vectors and haarcascades
         Image<Bgr, Byte> currentFrame, uploadedImage;
         Capture grabber;
@@ -26,9 +35,9 @@ namespace MultiFaceRec
         //Image<Gray, byte> UploadedFace = null;
         List<Image<Gray, byte>> trainingImages = new List<Image<Gray, byte>>();
         List<string> labels = new List<string>();
-        int ContTrain, NumLabels, NumOfStores;
+        int ContTrain, NumLabels, NoOfStores;
         string name = string.Empty, names = string.Empty;
-        string TrainedFacesFolder, UploadedFacesFolder, MiscFolder, MyStoreNameFilePath, MakeEntryInStoreFileAfterThisNoOfDay, VbsFolder, StoreFolder;
+        string TrainedFacesFolder, UploadedFacesFolder, RecommendationFilePath, MyStoreNameFilePath, MakeEntryInStoreFileAfterThisNoOfDay, VbsFolder, StoreFolder, AccountSid, AuthToken, SmsFrom, ShoppingMallName, isStoreWebcam, mainSystemFolder, SysAdmin;
         string[] Labels;
 
         /// <summary>
@@ -38,18 +47,18 @@ namespace MultiFaceRec
         {
             InitializeComponent();
             //Load haarcascades for face detection
-            face = new HaarCascade("haarcascade_frontalface_default.xml");
+            face = new HaarCascade(HaarcascadeFace);
 
             try
             {
                 //Get the config from Config.json
-                var Config = GetJsonFromFile(Application.StartupPath + "/Misc/Config.json");
+                var Config = GetJsonFromFile(Application.StartupPath + ConfigFilePath);
 
                 //Set the folder and file paths from Config.json
                 SetConfigValuesIntoGlobalVariables(Config);
 
                 //Load previous trained faces and labels for each image
-                Labels = File.ReadAllText(TrainedFacesFolder + "TrainedLabels.txt").Split('%');
+                Labels = File.ReadAllText(TrainedFacesFolder + TrainedLabelsFilePath).Split('%');
                 NumLabels = Convert.ToInt16(Labels[0]);
                 ContTrain = NumLabels;
 
@@ -60,9 +69,9 @@ namespace MultiFaceRec
                     labels.Add(Labels[tf]);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show("Something went wrong while loading faces from database", "Trained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Something went wrong while connecting to database", "Network Problem", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -72,23 +81,33 @@ namespace MultiFaceRec
         /// <param name="config"></param>
         private void SetConfigValuesIntoGlobalVariables(IDictionary<string, List<string>> config)
         {
-            var isStoreWebcam = config["IsStoreWebcam"][0];
-            var mainSystemFolder = config["MainSystemFolder"][0];
+            isStoreWebcam = config["IsStoreWebcam"][0];
+            mainSystemFolder = config["MainSystemFolder"][0];
             UploadedFacesFolder = config["UploadedFacesFolder"][0];
-            MiscFolder = config["MiscFolder"][0];
             MakeEntryInStoreFileAfterThisNoOfDay = config["MakeEntryInStoreFileAfterThisNoOfDay"][0];
             VbsFolder = config["VbsFolder"][0];
-            TrainedFacesFolder = isStoreWebcam == "False"
-                     ? Application.StartupPath + config["TrainedFacesFolder"][0]
-                     : mainSystemFolder + config["TrainedFacesFolder"][0];
-            StoreFolder = isStoreWebcam == "False"
+            TrainedFacesFolder = isStoreWebcam == False
+                                 ? Application.StartupPath + config["TrainedFacesFolder"][0]
+                                 : mainSystemFolder + config["TrainedFacesFolder"][0];
+            StoreFolder = isStoreWebcam == False
                           ? Application.StartupPath + config["StoreFolder"][0]
                           : mainSystemFolder + config["StoreFolder"][0];
-            MyStoreNameFilePath = isStoreWebcam == "False"
-                                  ? Application.StartupPath + config["MyStoreNameFilePath"][0]
-                                  : mainSystemFolder + config["MyStoreNameFilePath"][0];
+            MyStoreNameFilePath = StoreFolder + config["MyStoreName"][0];
+            RecommendationFilePath = isStoreWebcam == False
+                                     ? Application.StartupPath + config["RecommendationFilePath"][0]
+                                     : mainSystemFolder + config["RecommendationFilePath"][0];
+            NoOfStores = int.Parse(config["NoOfStores"][0]);
+            AccountSid = config["AccountSid"][0];
+            AuthToken = config["AuthToken"][0];
+            SmsFrom = config["SmsFrom"][0];
+            ShoppingMallName = config["ShoppingMallName"][0];
+            SysAdmin = config["SysAdmin"][0];
 
-            NumOfStores = int.Parse(config["NoOfStores"][0]);
+            if (!isStoreWebcam.Equals(False))
+            {
+                groupBox1.Visible = false;
+                groupBox3.Visible = false;
+            }
         }
 
         /// <summary>
@@ -99,7 +118,7 @@ namespace MultiFaceRec
         void FrameGrabber(object sender, EventArgs e)
         {
             //Set initial label texts
-            SetLabels("0", "No match found");
+            SetLabels("0", NoMatchFound);
 
             //Get the current frame form capture device
             currentFrame = grabber.QueryFrame().Resize(320, 240, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
@@ -139,12 +158,10 @@ namespace MultiFaceRec
 
                     //Draw the frame for each face detected and recognized and show the names
                     currentFrame.Draw(name.Split('+')[0], ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.LightGreen));
-                    label7.Text = name.Equals(string.Empty) ? "No match found" : name.Split('+')[0];
+                    label7.Text = name.Equals(string.Empty) ? NoMatchFound : name.Split('+')[0];
 
                     // Check the Webcam Mode (Itentification/Recording) and take action.
-                    // Store name is being taken from Config.
-                    var isStoreRecordingCameraOn = radioButton2.Checked;
-                    if (isStoreRecordingCameraOn && !name.Equals(string.Empty))
+                    if (!isStoreWebcam.Equals(False) && !name.Equals(string.Empty))
                     {
                         var storeJsonData = GetJsonFromFile(MyStoreNameFilePath);
 
@@ -261,24 +278,20 @@ namespace MultiFaceRec
                 //test image with cubic interpolation type method
                 TrainedFace = result.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 trainingImages.Add(TrainedFace);
-                labels.Add(textBox1.Text + "+" + DateTime.Now);
+                labels.Add(textBox1.Text + "+" + DateTime.Now + "+" + textBox2.Text);
 
                 //Show face added in gray scale
                 imageBox1.Image = result.Resize(162, 142, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
                 //Write the number of trained faces in a file text for further load
-                File.WriteAllText(TrainedFacesFolder + "TrainedLabels.txt", trainingImages.ToArray().Length.ToString() + "%");
+                File.WriteAllText(TrainedFacesFolder + TrainedLabelsFilePath, trainingImages.ToArray().Length.ToString() + "%");
 
                 //Write the labels of trained faces in a file text for further load
                 for (var i = 1; i < trainingImages.ToArray().Length + 1; i++)
                 {
                     trainingImages.ToArray()[i - 1].Save(TrainedFacesFolder + "face" + i + ".bmp");
-                    File.AppendAllText(TrainedFacesFolder + "TrainedLabels.txt", labels.ToArray()[i - 1] + "%");
+                    File.AppendAllText(TrainedFacesFolder + TrainedLabelsFilePath, labels.ToArray()[i - 1] + "%");
                 }
-
-                // Make a call to copy this newly added face to copy to all store folders
-                //
-                //
 
                 // Speak the message "Thank you for registering your face"
                 Speak("register.vbs");
@@ -291,26 +304,9 @@ namespace MultiFaceRec
         }
 
         /// <summary>
-        /// RunWindowsCommand
-        /// </summary>
-        /// <param name="command">RunWindowsCommand("/C copy " + Application.StartupPath + "\\Store\\*.* " + Application.StartupPath + "\\TempStore\\ /Z /Y");</param>
-        public void RunWindowsCommand()
-        {
-            var command = "/C copy " + Application.StartupPath + "\\Store\\*.* " + Application.StartupPath +
-                          "\\TempStore\\ /Z /Y";
-            var process = new Process();
-            var startInfo = new ProcessStartInfo();
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = command;
-            process.StartInfo = startInfo;
-            process.Start();
-        }
-
-        /// <summary>
         /// Speak the text present in .vbs file
         /// </summary>
-        private void Speak(string vbsFileName)
+        public void Speak(string vbsFileName)
         {
             var scriptProc = new Process();
             scriptProc.StartInfo.FileName = @Application.StartupPath + VbsFolder + vbsFileName;
@@ -333,14 +329,6 @@ namespace MultiFaceRec
 
                 grayUploadedFace = uploadedImage.Convert<Gray, Byte>();
 
-                //Face Detector
-                //                MCvAvgComp[][] facesDetected = grayUploadedFace.DetectHaarCascade(
-                //                  face,
-                //                  1.2,
-                //                  10,
-                //                  Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING,
-                //                  new Size(20, 20));
-
                 //Action for each element detected
                 resultUploadedFace = grayUploadedFace.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
@@ -362,11 +350,11 @@ namespace MultiFaceRec
                 //Show the faces processed and recognized
                 if (name.Equals(string.Empty))
                 {
-                    MessageBox.Show("No match found", "No match found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(NoMatchFound, NoMatchFound, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    MessageBox.Show("Match found : " + name.Split('+')[0], "Match found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(MatchFound + " : " + name.Split('+')[0], MatchFound, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch
@@ -383,7 +371,7 @@ namespace MultiFaceRec
         private void button4_Click(object sender, EventArgs e)
         {
             //SetButtonsState(false, false, true, true);
-            SetLabels("0", "No match found");
+            SetLabels("0", NoMatchFound);
 
             //Choose image file to upload from local system *.bmp only
             using (var fd = new OpenFileDialog())
@@ -398,39 +386,6 @@ namespace MultiFaceRec
                     var ResizedGrayImage = ResizedImage.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC).Convert<Gray, Byte>();
                     ResizedGrayImage.Save(Application.StartupPath + UploadedFacesFolder + "face.bmp");
                 }
-                //                fd.Title = "Choose image to upload";
-                //                fd.Filter = "bmp files (*.bmp)|*.bmp";
-                //                if (fd.ShowDialog() == DialogResult.OK)
-                //                {
-                //                    var userImage = new Image<Bgr, Byte>(new Bitmap(fd.FileName)).Resize(320, 240,
-                //                        Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                //                    //imageBoxForUserImage.Image = userImage;
-                //
-                //                    //Face Detector
-                //                    MCvAvgComp[][] facesDetected = userImage.DetectHaarCascade(
-                //                    face,
-                //                    1.2,
-                //                    10,
-                //                    Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING,
-                //                    new Size(20, 20));
-                //
-                //                    //Action for each element detected
-                //                    foreach (MCvAvgComp f in facesDetected[0])
-                //                    {
-                //                        resultUploadedFace = userImage.Copy(f.rect).Convert<Gray, byte>();
-                //                        break;
-                //                    }
-                //
-                //                    //resize face detected image for force to compare the same size with the 
-                //                    //test image with cubic interpolation type method
-                //                    UploadedFace = resultUploadedFace.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                //
-                //                    //Show face added in gray scale
-                //                    imageBoxForUserImage.Image = UploadedFace;
-                //
-                //                    //Write the labels of triained faces in a file text for further load
-                //                    UploadedFace.Save(Application.StartupPath + "/UploadedFaces/face.bmp");
-                //                }
             }
             //button3.Enabled = true;
         }
@@ -443,14 +398,14 @@ namespace MultiFaceRec
         private void button5_Click(object sender, EventArgs e)
         {
             var visitedStores = new List<string>();
-            var recommendation = string.Empty;
+            var recommendation = "Hi " + name.Split('+')[0] + ",\nLatest offers in " + ShoppingMallName + "\n";
 
             //Get the recommendation from the JSON file
-            var jsonRecommendation = GetJsonFromFile(Application.StartupPath + MiscFolder + "Recommendation.json");
+            var jsonRecommendation = GetJsonFromFile(RecommendationFilePath);
             var jsonRecommendationGeneral = jsonRecommendation["General"];
 
             //Find the stores where the person (name) has visited
-            for (var i = 0; i < NumOfStores; ++i)
+            for (var i = 0; i < NoOfStores; ++i)
             {
                 var jsonStore = GetJsonFromFile(StoreFolder + "Store" + (i + 1) + ".json");
                 if (jsonStore.ContainsKey(name))
@@ -465,7 +420,29 @@ namespace MultiFaceRec
             //Add general recommendation
             recommendation = jsonRecommendationGeneral.Aggregate(recommendation, (current, t) => current + ("\u2713 " + t + "\n"));
 
+            //Show recommendation in the label in UI
             label6.Text = recommendation;
+
+            //Send recommendation by SMS
+            try
+            {
+                SendMsg(SmsFrom, "+91" + name.Split('+')[2], recommendation);
+            }
+            catch (Exception)
+            {
+                Speak("RegisterForMsg.vbs");
+            }
+        }
+
+        /// <summary>
+        /// Send SMS
+        /// </summary>
+        /// <param name="SmsFrom"></param>
+        /// <param name="SmsTo"></param>
+        /// <param name="text"></param>
+        private void SendMsg(string SmsFrom, string SmsTo, string text)
+        {
+            new TwilioRestClient(AccountSid, AuthToken).SendMessage(SmsFrom, SmsTo, text);
         }
 
         /// <summary>

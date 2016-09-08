@@ -70,7 +70,6 @@ namespace Emgu.CV
         {
         }
 
-
         /// <summary>
         /// Create an object recognizer using the specific training data and parameters, it will always return the most similar object
         /// </summary>
@@ -81,6 +80,11 @@ namespace Emgu.CV
         {
         }
 
+        /// <summary>
+        /// Generate Labels
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns>labels</returns>
         private static String[] GenerateLabels(int size)
         {
             string[] labels = new string[size];
@@ -108,7 +112,7 @@ namespace Emgu.CV
         /// <param name="images">The images used for training, each of them should be the same size. It's recommended the images are histogram normalized</param>
         /// <param name="labels">The labels corresponding to the images</param>
         /// <param name="eigenDistanceThreshold">
-        /// The eigen distance threshold, (0, ~1000].
+        /// The eigen distance threshold, (0, ~1000).
         /// The smaller the number, the more likely an examined image will be treated as unrecognized object. 
         /// If the threshold is &lt; 0, the recognizer will always treated the examined image as one of the known object. 
         /// </param>

@@ -63,6 +63,10 @@
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.105.2.2\lib\net35\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,6 +76,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Twilio.4.7.2\lib\3.5\Twilio.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EigenObjectRecognizer.cs" />
@@ -96,8 +104,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\Misc\Config.json" />
+    <None Include="bin\Debug\Misc\Recommendation.json" />
+    <None Include="bin\Debug\Store\Store1.json" />
+    <None Include="bin\Debug\Store\Store2.json" />
     <None Include="bin\Release\MultiFaceRec.vshost.exe.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,8 +151,53 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Logs\LogFilePath.txt" />
     <Content Include="bin\Debug\MultiFaceRec.exe" />
     <Content Include="bin\Debug\MultiFaceRec.pdb" />
+    <Content Include="bin\Debug\TrainedFaces\A.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face1.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face10.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face11.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face12.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face13.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face14.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face15.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face16.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face17.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face18.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face19.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face2.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face20.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face21.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face22.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face23.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face24.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face25.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face26.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face27.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face28.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face29.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face3.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face30.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face31.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face32.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face33.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face34.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face35.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face4.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face5.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face6.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face7.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face8.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\face9.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\IMG-20160809-WA0000.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\mayank.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\mayank1.bmp" />
+    <Content Include="bin\Debug\TrainedFaces\TrainedLabels.txt" />
+    <Content Include="bin\Debug\UploadedFaces\face.bmp" />
+    <Content Include="bin\Debug\Vbs\EmptyAddFace.vbs" />
+    <Content Include="bin\Debug\Vbs\Register.vbs" />
+    <Content Include="bin\Debug\Vbs\RegisterForMsg.vbs" />
     <Content Include="bin\Release\MultiFaceRec.vshost.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
