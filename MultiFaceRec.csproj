@@ -106,6 +106,7 @@
     </Compile>
     <None Include="bin\Debug\Misc\Config.json" />
     <None Include="bin\Debug\Misc\Recommendation.json" />
+    <None Include="bin\Debug\Store\MainEntry.json" />
     <None Include="bin\Debug\Store\Store1.json" />
     <None Include="bin\Debug\Store\Store2.json" />
     <None Include="bin\Release\MultiFaceRec.vshost.exe.manifest" />
@@ -196,6 +197,7 @@
     <Content Include="bin\Debug\TrainedFaces\TrainedLabels.txt" />
     <Content Include="bin\Debug\UploadedFaces\face.bmp" />
     <Content Include="bin\Debug\Vbs\EmptyAddFace.vbs" />
+    <Content Include="bin\Debug\Vbs\NetworkIssue.vbs" />
     <Content Include="bin\Debug\Vbs\Register.vbs" />
     <Content Include="bin\Debug\Vbs\RegisterForMsg.vbs" />
     <Content Include="bin\Release\MultiFaceRec.vshost.exe" />

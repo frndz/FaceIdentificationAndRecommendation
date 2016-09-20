@@ -1,0 +1,1 @@
+CreateObject("sapi.spvoice").Speak "Unable to connect to Main system"

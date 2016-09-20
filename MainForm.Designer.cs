@@ -49,6 +49,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -289,9 +290,9 @@
             this.button5.Location = new System.Drawing.Point(972, 594);
             this.button5.Margin = new System.Windows.Forms.Padding(6);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(638, 59);
+            this.button5.Size = new System.Drawing.Size(316, 59);
             this.button5.TabIndex = 18;
-            this.button5.Text = "Show Recommendations For Me";
+            this.button5.Text = "Show Offers For Me";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -308,12 +309,27 @@
             this.label6.Size = new System.Drawing.Size(0, 38);
             this.label6.TabIndex = 18;
             // 
+            // button6
+            // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button6.Font = new System.Drawing.Font("Comic Sans MS", 10.17801F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(1316, 594);
+            this.button6.Margin = new System.Windows.Forms.Padding(6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(294, 59);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "Show All Offers";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(2072, 1315);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox3);
@@ -360,6 +376,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button6;
     }
 }
 

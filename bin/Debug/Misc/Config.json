@@ -1,4 +1,6 @@
 {
+  "MainSystemFolder": [ "//M_S-PC/debug" ],
+  "IsStoreWebcam": [ "False" ],
   "ShoppingMallName": [ "Phoenix Mall" ],
   "NoOfStores": [ "2" ],
   "StoreFolder": [ "/Store/" ],
@@ -6,14 +8,16 @@
   "TrainedFacesFolder": [ "/TrainedFaces/" ],
   "ConsiderDataAfterThisDateForMyStore": [ "1/1/2016 12:16:14 PM" ],
   "MakeEntryInStoreFileAfterThisNoOfDay": [ "1" ],
-  "MyStoreName": [ "Store2.json" ],
+  "MyStoreName": [ "MainEntry.json" ],
   "LogFilePath": [ "/Logs/LogFilePath.txt" ],
   "VbsFolder": [ "/Vbs/" ],
-  "MainSystemFolder": [ "//M_S-PC/debug" ],
-  "IsStoreWebcam": [ "False" ],
   "RecommendationFilePath": [ "/Misc/Recommendation.json" ],
   "AccountSid": [ "ACb0dad80cb0b4e92e3ca7efd538687a0d" ],
   "AuthToken": [ "b219940e1d34df07ce5f54ab5758d393" ],
   "SmsFrom": [ "+12014167507" ],
-  "SysAdmin": [ "8951471517" ]
+  "SysAdmin": [ "+918951471517" ],
+  "EigenThresholdConstant": [ "5000" ],
+  "TimerInterval": [ "10000" ],
+  "NoOfPicsForEachPerson": [ "10" ],
+  "TimeIntervalForMultiplePics": [ "500" ]
 }

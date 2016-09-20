@@ -145,7 +145,7 @@ namespace Emgu.CV
 
         #region static methods
         /// <summary>
-        /// Caculate the eigen images for the specific traning image
+        /// Caculate the eigen images for the specific training image
         /// </summary>
         /// <param name="trainingImages">The images used for training </param>
         /// <param name="termCrit">The criteria for tranning</param>
@@ -166,7 +166,9 @@ namespace Emgu.CV
             #region initialize eigen images
             eigenImages = new Image<Gray, float>[maxEigenObjs];
             for (int i = 0; i < eigenImages.Length; i++)
+            {
                 eigenImages[i] = new Image<Gray, float>(width, height);
+            }
             IntPtr[] eigObjs = Array.ConvertAll<Image<Gray, Single>, IntPtr>(eigenImages, delegate (Image<Gray, Single> img) { return img.Ptr; });
             #endregion
 
@@ -223,7 +225,7 @@ namespace Emgu.CV
                 return Array.ConvertAll<Matrix<float>, float>(_eigenValues,
                     delegate (Matrix<float> eigenValueI)
                     {
-                        return (float)CvInvoke.cvNorm(eigenValue.Ptr, eigenValueI.Ptr, Emgu.CV.CvEnum.NORM_TYPE.CV_L2, IntPtr.Zero);
+                        return (float)CvInvoke.cvNorm(eigenValue.Ptr, eigenValueI.Ptr, CvEnum.NORM_TYPE.CV_L2, IntPtr.Zero);
                     });
         }
 

@@ -13,18 +13,7 @@ namespace WindowsServiceCS
 {
     public partial class Service1 : ServiceBase
     {
-        private string MainSystemDebugFolder,
-            DebugFolder,
-            LogFilePath,
-            AccountSid,
-            AuthToken,
-            SmsFrom,
-            SysAdmin,
-            ShoppingMallName,
-            RecommendationFilePath,
-            StoreFolder,
-            TrainedFacesFolder;
-
+        private string MainSystemDebugFolder, DebugFolder, LogFilePath, AccountSid, AuthToken, SmsFrom, ShoppingMallName, RecommendationFilePath, StoreFolder, TrainedFacesFolder;
         private int NoOfStores;
         private Timer Schedular;
         private const string TrainedLabelsFilePath = "TrainedLabels.txt";
@@ -49,7 +38,6 @@ namespace WindowsServiceCS
             AccountSid = config["AccountSid"][0];
             AuthToken = config["AuthToken"][0];
             SmsFrom = config["SmsFrom"][0];
-            SysAdmin = config["SysAdmin"][0];
             ShoppingMallName = config["ShoppingMallName"][0];
             RecommendationFilePath = DebugFolder + config["RecommendationFilePath"][0];
             StoreFolder = DebugFolder + config["StoreFolder"][0];
@@ -119,7 +107,7 @@ namespace WindowsServiceCS
         }
 
         /// <summary>
-        /// Scedular callback
+        /// Schedular callback
         /// </summary>
         /// <param name="e"></param>
         private void SchedularCallback(object e)
@@ -190,12 +178,12 @@ namespace WindowsServiceCS
                 var jsonRecommendationGeneral = jsonRecommendation["General"];
 
                 //Find the stores where the person (name) has visited
-                for (var i = 0; i < NoOfStores; ++i)
+                for (var i = 1; i <= NoOfStores; ++i)
                 {
-                    var jsonStore = GetJsonFromFile(StoreFolder + "Store" + (i + 1) + ".json");
+                    var jsonStore = GetJsonFromFile(StoreFolder + "Store" + i + ".json");
                     if (jsonStore.ContainsKey(name))
                     {
-                        visitedStores.Add("Store" + (i + 1));
+                        visitedStores.Add("Store" + i);
                     }
                 }
 
